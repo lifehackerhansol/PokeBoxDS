@@ -208,7 +208,7 @@ $(SOUNDBANK) : $(MODFILES)
 	@echo $(notdir $<)
 	@VARNAME=$$(echo $(<F) | sed -e 's/[^A-Za-z0-9_]/_/g'); \
 	$(OBJCOPY) -I binary -O elf32-littlearm -B armv3m --redefine-sym "_binary_$${VARNAME}_start=$${VARNAME}" $< $@; \
-	echo "#include \"tilemapdefs.h\"\\nextern const tilemap_t $${VARNAME};" > $$(echo $(<F) | tr . _ ).h
+	printf "#include \"tilemapdefs.h\"\\nextern const tilemap_t $${VARNAME};" > $$(echo $(<F) | tr . _ ).h
 
 #---------------------------------------------------------------------------------
 # This rule creates assembly source files using grit
